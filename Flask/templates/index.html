@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Maintenance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <div class="container">
+
+        <h1>Predictive Maintenance</h1>
+
+        <form id="maintenanceForm" action="/predict" method="POST">
+
+            <label for="type">Type (L, M, H):</label>
+            <input type="text" id="type" name="type" required>
+
+            <label for="air_temp">Air Temperature [K]:</label>
+            <input type="number" id="air_temp" name="air_temp" step="any" required>
+
+            <label for="process_temp">Process Temperature [K]:</label>
+            <input type="number" id="process_temp" name="process_temp" step="any" required>
+
+            <label for="rotational_speed">Rotational Speed [rpm]:</label>
+            <input type="number" id="rotational_speed" name="rotational_speed" required>
+
+            <label for="torque">Torque [Nm]:</label>
+            <input type="number" id="torque" name="torque" step="any" required>
+
+            <label for="tool_wear">Tool Wear [min]:</label>
+            <input type="number" id="tool_wear" name="tool_wear" required>
+
+            <button type="submit">Predict Machine Failure</button>
+        </form>
+
+        <!-- Placeholder for prediction result -->
+        <div id="result" style="margin-top: 20px;"></div>
+
+    </div>
+
+    <script>
+        const form = document.getElementById("maintenanceForm");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const rotationalSpeed = parseFloat(document.getElementById("rotational_speed").value);
+            const torque = parseFloat(document.getElementById("torque").value);
+            const airTemp = parseFloat(document.getElementById("air_temp").value);
+            const processTemp = parseFloat(document.getElementById("process_temp").value);
+            const toolWear = parseFloat(document.getElementById("tool_wear").value);
+
+            // Feature calculations
+            const power = rotationalSpeed * torque;
+            const tempDiff = processTemp - airTemp;
+            const toolWearTorqueProduct = toolWear * torque;
+
+            // Attach calculated values as hidden inputs for form submission
+            const powerInput = document.createElement("input");
+            powerInput.type = "hidden";
+            powerInput.name = "power";
+            powerInput.value = power;
+
+            const tempDiffInput = document.createElement("input");
+            tempDiffInput.type = "hidden";
+            tempDiffInput.name = "temp_diff";
+            tempDiffInput.value = tempDiff;
+
+            const toolWearTorqueProductInput = document.createElement("input");
+            toolWearTorqueProductInput.type = "hidden";
+            toolWearTorqueProductInput.name = "tool_wear_torque_product";
+            toolWearTorqueProductInput.value = toolWearTorqueProduct;
+
+            form.appendChild(powerInput);
+            form.appendChild(tempDiffInput);
+            form.appendChild(toolWearTorqueProductInput);
+
+            // Submit the form via AJAX
+            fetch('/predict', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display result
+                const resultDiv = document.getElementById("result");
+
+                // Clear previous content
+                resultDiv.className = ''; // Reset classes
+                resultDiv.innerHTML = ''; // Clear previous content
+
+                if (data.prediction === 1) {
+                    resultDiv.classList.add('result-message', 'failure');
+                    resultDiv.innerHTML = `Failure can occur.`;
+                } else {
+                    resultDiv.classList.add('result-message', 'success');
+                    resultDiv.innerHTML = `No failure Predicted.`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+    </script>
+</body>
+</html>
