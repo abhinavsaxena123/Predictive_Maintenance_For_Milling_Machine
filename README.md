@@ -1,5 +1,9 @@
 # Predictive_Maintenance_For_Milling_Machine ⚙️
 
+<img width="171" alt="image" src="https://github.com/user-attachments/assets/b745f140-5598-497f-aef8-18bab9cfa558">
+
+
+
 ![back_image](https://github.com/user-attachments/assets/40d218e1-1494-4d91-bd1a-9e7808b71ca0)
 
 
