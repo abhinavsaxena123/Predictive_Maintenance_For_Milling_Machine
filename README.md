@@ -1,5 +1,8 @@
 # Predictive_Maintenance_For_Milling_Machine ⚙️
 
+![back_image](https://github.com/user-attachments/assets/40d218e1-1494-4d91-bd1a-9e7808b71ca0)
+
+
 ## Overview 🪄
 Predictive Maintenance for Milling Machines is a project aimed at utilizing data-driven techniques to anticipate equipment failures before they occur. By applying machine learning models to sensor data, we can reduce machine downtime, optimize maintenance schedules, and extend machine lifespan.
 
