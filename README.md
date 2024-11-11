@@ -16,21 +16,73 @@ This model will help:
 ### Project Structure
 ```
 Predictive_Maintenance_For_Milling_Machine/
-├── data/
-│   ├── raw/                     # Raw data files
+├── Data/
+│   ├── ai4i2020.csv             # Raw data files
 │   ├── processed/               # Cleaned and processed data files
-│   └── README.md                # Data dictionary and explanations
-├── notebooks/
-│   ├── EDA.ipynb                # Exploratory data analysis
-│   ├── Preprocessing.ipynb      # Data preprocessing steps
-│   └── ModelTraining.ipynb      # Model training and evaluation
-├── src/
-│   ├── data_processing.py       # Data processing scripts
-│   ├── feature_engineering.py   # Feature engineering scripts
-│   ├── model_training.py        # Model training scripts
-│   └── utils.py                 # Utility functions
-├── reports/
-│   └── results.pdf              # Detailed report of model results
+├── Flask/
+│   └── static                   #images
+|   └── templates                #index.html
+│── Saved_Models/                # .pkl files
+│── EDA.ipnb                       
+|── Model_Building.ipynb
+├── app.py                       #Flask app
 ├── README.md                    # Project overview
 ├── requirements.txt             # Project dependencies
 ```
+
+## Data Description:
+Dataset source: Kaggle, UCI
+* Dataset Link: https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020
+
+This synthetic dataset is modeled after an existing milling machine and consists of 10 000 data points from a stored as rows with 14 features in columns.
+1. UID: unique identifier ranging from 1 to 10000
+2. product ID: consisting of a letter L, M, or H for low (50% of all products), medium (30%) and high (20%) as product quality variants and a variant-specific serial number
+3. type: just the product type L, M or H from column 2
+4. air temperature [K]: generated using a random walk process later normalized to a standard deviation of 2 K around 300 K
+5. process temperature [K]: generated using a random walk process normalized to a standard deviation of 1 K, added to the air temperature plus 10 K.
+6. rotational speed [rpm]: calculated from a power of 2860 W, overlaid with a normally distributed noise
+7. torque [Nm]: torque values are normally distributed around 40 Nm with a SD = 10 Nm and no negative values.
+8. tool wear [min]: The quality variants H/M/L add 5/3/2 minutes of tool wear to the used tool in the process.
+9. 'machine failure' label that indicates, whether the machine has failed in this particular datapoint for any of the following failure modes are true.
+
+This dataset is part of the following publication, please cite when using this dataset:
+S. Matzka, "Explainable Artificial Intelligence for Predictive Maintenance Applications," 2020 Third International Conference on Artificial Intelligence for Industries (AI4I), 2020, pp. 69-74, doi: 10.1109/AI4I49448.2020.00023.
+
+____________________________________________________________________________________________________________________________________________________________________________
+
+## Installation
+### 1. Clone the repository:
+```
+git clone
+cd Predictive_Maintenance_For_Milling_Machine
+```
+### 2. Install dependencies:
+```
+pip install -r requirements.txt
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
