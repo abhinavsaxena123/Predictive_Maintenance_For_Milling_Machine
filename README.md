@@ -53,7 +53,7 @@ ________________________________________________________________________________
 ## Installation
 ### 1. Clone the repository:
 ```
-git clone
+git clone https://github.com/abhinavsaxena123/Predictive_Maintenance_For_Milling_Machine
 cd Predictive_Maintenance_For_Milling_Machine
 ```
 ### 2. Install dependencies:
