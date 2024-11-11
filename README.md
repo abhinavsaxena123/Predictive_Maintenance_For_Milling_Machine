@@ -76,22 +76,66 @@ python app.py
 ```
 * Access the application: Open your web browser and go to http://127.0.0.1:5000 to access the main page of the app.
 * Deactivate the Virtual Environment: After you’re done working, deactivate the virtual environment by running:
-```
 deactivate
+
+
+## Methodology
+
+### 1. Data Collection and Cleaning: Acquiring machine data, handling missing values, and outliers.
+
+### 2. Exploratory Data Analysis (EDA): Identifying patterns, correlations, and trends.
+
+### Some Distribution Plots:
+<img width="428" alt="image" src="https://github.com/user-attachments/assets/7b6a8faf-9b5b-43e9-b299-456040f9f71b">
+
+<img width="430" alt="image" src="https://github.com/user-attachments/assets/c49c3fba-542d-4703-87d9-1e4e714a89e3">
+
+#### Problem: Data is highly Imbalanced.
+#### Our Approach: Using Models and techniques which are well-suited for handling imbalanced datasets.
+
+<img width="900" height="300" alt="image" src="https://github.com/user-attachments/assets/e9a394e5-020e-4480-8ca9-bfff6c1232c6">
+<img width="238" alt="image" src="https://github.com/user-attachments/assets/82e84a6d-97f1-4775-a5c8-b320234aacb1">
+
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/d93122fc-7e7d-40a3-b654-61e1b10dcb5a">
+
+### Checking Distribution of Data (Q-Q Plots):
+<img width="849" alt="image" src="https://github.com/user-attachments/assets/2444e2fd-675d-46a1-9461-957f7ad74adb">
+<img width="864" alt="image" src="https://github.com/user-attachments/assets/f1c9f9f4-7c06-419b-8294-61cec1a24e59">
+<img width="874" alt="image" src="https://github.com/user-attachments/assets/4535ea9b-c3ae-4922-a265-ca28a36a83b2">
+<img width="863" alt="image" src="https://github.com/user-attachments/assets/7709acd8-6a71-42c9-8299-32c25bcaddd2">
+
+### 3. Feature Engineering: Creating new variables from raw data, like Power, Temp_diff, tool_wear_torque_product.
+```
+df['Power'] = df[['Rotational speed [rpm]', 'Torque [Nm]']].product(axis=1)
 ```
 
+```
+df['Temp_diff'] = df['Process temperature [K]'] - df['Air temperature [K]']
+```
 
+```
+df['tool_wear_torque_product'] = df[['Tool wear [min]', 'Torque [Nm]']].product(axis=1)
+```
 
+<img width="794" alt="image" src="https://github.com/user-attachments/assets/ea50fea8-04b3-4371-a2ab-b380e1f12731">
 
+### 4. Model Selection: Testing algorithms like Random Forest, XGBoost, and SVM etc.
 
+### 5. Model Evaluation: Assessing model performance using metrics such as accuracy, precision, recall, F1 score, and AUC-ROC.
 
+## Results:
+<img width="841" alt="image" src="https://github.com/user-attachments/assets/e0db099f-7d61-47eb-a5e0-2f9eb2d38bc0">
 
+### Analysis:
+* Random Forest has the highest overall performance with 99.03% accuracy and strong F1, precision, and recall scores. This model also has a high PR AUC of 85.79%, indicating good performance on the precision-recall curve, especially for imbalanced classes.
+* LightGBM and XGBoost are very close in performance, with LightGBM slightly outperforming XGBoost in F1 score and recall. Both models are still significantly better than the other models, though they lag behind Random Forest in terms of accuracy.
+* SVM performs worse than the tree-based models, with a significantly lower precision (65.50%) and F1 score (71.47%). While recall is high (92.96%), the precision is much lower, which could indicate that the model is over-predicting the positive class. The PR AUC of 62.31% also suggests that the model's precision-recall trade-off isn't ideal.
+* Logistic Regression has the lowest performance overall, with poor F1 score, precision, and PR AUC. While its recall is relatively decent at 84.46%, the model is not doing as well on the other metrics, indicating it may struggle to properly classify positive instances.
 
-
-
-
-
-
+## Conclusion:
+* Random Forest is the top performer in terms of overall accuracy and balanced metrics.
+* LightGBM and XGBoost are also strong choices, especially if one is aiming for slightly faster models with comparable performance.
+* SVM and Logistic Regression are not ideal for this specific task, with Logistic Regression performing the worst across almost all metrics.
 
 ## Future Work
 Future improvements include:
