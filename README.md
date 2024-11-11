@@ -93,6 +93,14 @@ deactivate
 
 
 
+## Future Work
+Future improvements include:
+
+* Integrating real-time data streams.
+* Expanding to predictive maintenance for other machinery.
+* Adding a REST API for broader integration possibilities.
 
 
+## Contributors
+Abhinav Saxena
 
