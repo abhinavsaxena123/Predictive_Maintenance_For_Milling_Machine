@@ -1,6 +1,6 @@
-# Predictive_Maintenance_For_Milling_Machine
+# Predictive_Maintenance_For_Milling_Machine ⚙️
 
-## Overview
+## Overview 🪄
 Predictive Maintenance for Milling Machines is a project aimed at utilizing data-driven techniques to anticipate equipment failures before they occur. By applying machine learning models to sensor data, we can reduce machine downtime, optimize maintenance schedules, and extend machine lifespan.
 
 ## Background
@@ -13,7 +13,7 @@ This model will help:
 * Optimize maintenance schedules.
 * Minimize operational costs.
 
-### Project Structure
+### Project Structure 📒
 ```
 Predictive_Maintenance_For_Milling_Machine/
 ├── Data/
@@ -30,7 +30,7 @@ Predictive_Maintenance_For_Milling_Machine/
 ├── requirements.txt             # Project dependencies
 ```
 
-## Data Description:
+## Data Description: 
 Dataset source: Kaggle, UCI
 * Dataset Link: https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020
 
@@ -50,25 +50,35 @@ S. Matzka, "Explainable Artificial Intelligence for Predictive Maintenance Appli
 
 ____________________________________________________________________________________________________________________________________________________________________________
 
-## Installation
+## Installation ⚙️
 ### 1. Clone the repository:
 ```
 git clone https://github.com/abhinavsaxena123/Predictive_Maintenance_For_Milling_Machine
 cd Predictive_Maintenance_For_Milling_Machine
 ```
-### 2. Install dependencies:
+
+### 2. Set Up a Virtual Environment
+* Using venv (for Python):
+```
+python3 -m venv env                        # Use `python` on Windows instead of `python3`
+source env/bin/activate                    # On Windows, use source env/Scripts/activate
+```
+
+### 3. Install dependencies:
 ```
 pip install -r requirements.txt
 ```
 
-
-
-
-
-
-
-
-
+## Usage
+### 1. Run Your Flask Application:
+```
+python app.py
+```
+* Access the application: Open your web browser and go to http://127.0.0.1:5000 to access the main page of the app.
+* Deactivate the Virtual Environment: After you’re done working, deactivate the virtual environment by running:
+```
+deactivate
+```
 
 
 
