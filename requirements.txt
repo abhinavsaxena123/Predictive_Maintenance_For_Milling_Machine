@@ -1,2 +1,5 @@
 lightgbm
 pickle
+pandas
+scikit-learn
+Flask
